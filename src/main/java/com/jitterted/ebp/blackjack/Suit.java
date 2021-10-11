@@ -17,6 +17,7 @@ public enum Suit {
 
     // TEMPORARY
     // SCAFFOLDING - will go away
+    @Deprecated
     public static Suit from(String symbol) {
         for (Suit suit : values()) {
             if (suit.symbol().equals(symbol)) {
