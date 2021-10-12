@@ -26,4 +26,13 @@ public class HandValueAceTest {
                 .isEqualTo(1 + 8 + 3);
     }
 
+    @Test
+    public void handWithAceAndTenCardIsValuedAt21() throws Exception {
+        List<Card> cards = CardFactory.createCardsOfRank("A", "10");
+        Hand hand = Hand.createTestHand(cards);
+
+        assertThat(hand.value())
+                .isEqualTo(11 + 10);
+    }
+
 }
