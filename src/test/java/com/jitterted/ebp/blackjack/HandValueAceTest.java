@@ -10,19 +10,19 @@ public class HandValueAceTest {
 
     @Test
     public void handWithOneAceTwoCardsIsValuedAt11() throws Exception {
-        Game game = new Game();
         List<Card> cards = CardFactory.createCardsOfRank("A", "5");
+        Hand hand = Hand.createTestHand(cards);
 
-        assertThat(game.handValueOf(cards))
+        assertThat(hand.value())
                 .isEqualTo(11 + 5);
     }
 
     @Test
     public void handWithOneAceAndOtherCardsEqualTo11IsValuedAt1() throws Exception {
-        Game game = new Game();
         List<Card> cards = CardFactory.createCardsOfRank("A", "8", "3");
+        Hand hand = Hand.createTestHand(cards);
 
-        assertThat(game.handValueOf(cards))
+        assertThat(hand.value())
                 .isEqualTo(1 + 8 + 3);
     }
 
