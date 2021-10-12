@@ -17,7 +17,14 @@ public class Wallet {
     }
 
     public void bet(int betAmount) {
+        requireSufficientBalance(betAmount);
         balance -= betAmount;
+    }
+
+    private void requireSufficientBalance(int betAmount) {
+        if (betAmount > balance) {
+            throw new IllegalStateException();
+        }
     }
 
     private void requireGreaterThanZero(int amount) {

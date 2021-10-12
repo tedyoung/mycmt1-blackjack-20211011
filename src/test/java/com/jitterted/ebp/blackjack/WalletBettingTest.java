@@ -8,8 +8,7 @@ public class WalletBettingTest {
 
     @Test
     public void walletWithBalanceOf12Bet8HasBalanceOf4() throws Exception {
-        Wallet wallet = new Wallet();
-        wallet.addMoney(12);
+        Wallet wallet = createWalletWith(12);
 
         wallet.bet(8);
 
@@ -19,8 +18,7 @@ public class WalletBettingTest {
 
     @Test
     public void walletWith27Bet7AndBet9ThenBalanceIs11() throws Exception {
-        Wallet wallet = new Wallet();
-        wallet.addMoney(27);
+        Wallet wallet = createWalletWith(27);
 
         wallet.bet(7);
         wallet.bet(9);
@@ -31,12 +29,26 @@ public class WalletBettingTest {
 
     @Test
     public void betFullBalanceThenWalletIsEmpty() throws Exception {
-        Wallet wallet = new Wallet();
-        wallet.addMoney(73);
+        Wallet wallet = createWalletWith(73);
 
         wallet.bet(73);
 
         assertThat(wallet.isEmpty())
                 .isTrue();
+    }
+
+    @Test
+    public void betMoreThanBalanceThrowsException() throws Exception {
+        Wallet wallet = createWalletWith(10);
+
+        assertThatThrownBy(() -> {
+            wallet.bet(11);
+        }).isInstanceOf(IllegalStateException.class);
+    }
+
+    private Wallet createWalletWith(int initialAmount) {
+        Wallet wallet = new Wallet();
+        wallet.addMoney(initialAmount);
+        return wallet;
     }
 }
