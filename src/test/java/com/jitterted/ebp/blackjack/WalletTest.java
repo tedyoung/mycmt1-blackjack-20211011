@@ -54,6 +54,14 @@ public class WalletTest {
 
         assertThat(wallet.balance())
                 .isEqualTo(7 + 8); // EVIDENT DATA
+    }
 
+    @Test
+    public void addMoneyOfNegativeAmountThrowsException() throws Exception {
+        Wallet wallet = new Wallet();
+
+        assertThatThrownBy(() -> {
+            wallet.addMoney(-1);
+        }).isInstanceOf(IllegalArgumentException.class);
     }
 }
